@@ -1,0 +1,51 @@
+<% unless @current_assignments.empty? %>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Current Assignments</span>
+      <table class="lined">
+        <thead>
+          <th></th>
+          <th>Starting</th>
+          <th>Officer</th>
+        </thead>
+          <% for assignment in @current_assignments %>
+            <tr>
+              <td>
+                <% if can? :terminate, Assignment %>
+                  <%= link_to(terminate_assignment_path(assignment, investigation_id: @investigation.id), class: 'remove', method: :patch) do %>
+                    x&nbsp;&nbsp;
+                  <% end %>
+                <% end %>
+              </td>
+              <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
+              <td>
+                <% if can? :read, assignment.officer %>
+                    <%= link_to assignment.officer.name, officer_path(assignment.officer) %>
+                <% else %>
+                  &nbsp;<%= assignment.officer.name %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+      </table>
+      <% if can? :new, Assignment %>
+        <% if @investigation.date_closed.nil? %>
+          <div class="card-action">
+            <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else%>
+  <% if can? :new, Assignment %>
+    <% if @investigation.date_closed.nil? %>
+      <div class="card grey lighten-3">
+        <div class="card-action">
+          <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id) %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+

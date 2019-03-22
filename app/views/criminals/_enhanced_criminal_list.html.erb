@@ -1,0 +1,37 @@
+<h4>Enhanced Criminals in GCPD</h4>
+
+<% if criminals.empty? %>
+  <p>There are no criminals with enhanced power at this time.</p>
+<% else %>
+
+  <table class="striped highlight">
+    <thead>
+      <th>Name</th>
+      <th>Convicted Felon</th>
+
+      <% if can? :edit, Criminal %>
+        <th class="align_center">Edit</th>
+      <% end %>
+    </thead>
+    <% for criminal in criminals %>
+      <tr>
+        <td><%= link_to criminal.name, criminal_path(criminal) %></td>
+        <td><%= criminal.convicted_felon ? "Yes" : "No" %></td>
+
+
+
+
+      <% if can? :edit, criminal %>
+        <td class="align_center">
+          <%= link_to edit_criminal_path(criminal) do %>
+              <i class="material-icons">edit</i>
+          <% end %>
+        </td>
+       <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <p class="supertiny"></p>
+  <br />
+  <%= will_paginate criminals, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% end %>

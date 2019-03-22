@@ -1,0 +1,31 @@
+<%# if @closed_unsolved.empty? %>
+  <!-- <h5>No closed, unsolved investigations</h5> -->
+<%# else%>
+
+<% unless @closed_unsolved.empty? %>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Recently Closed, Unsolved Cases</span>
+      <table class="lined">
+        <thead>
+          <th>Case</th>
+          <th>Date Closed</th>
+        </thead>
+          <% for investigation in @closed_unsolved %>
+            <tr>
+              <td>
+                <% if (current_user.role?(:commish)|| current_user.role?(:chief) || investigation.officers.include?(current_user.officer)) %>
+                  &nbsp;<%= link_to investigation.title, investigation_path(investigation) %>
+                <% else %>
+                  &nbsp;<%= investigation.title %>
+                <% end %>
+              </td>
+              <td><%= investigation.date_closed.strftime("%m/%d/%y") %></td>
+              
+            </tr>
+          <% end %>
+      </table>
+    </div>
+  </div>
+<% end%>
+<br />

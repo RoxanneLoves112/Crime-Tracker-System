@@ -1,0 +1,13 @@
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/json-2.1.0/ext/json
+/Users/yutian/.rvm/rubies/ruby-2.4.1/bin/ruby -r ./siteconf20181113-7498-1ce6vle.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/json-2.1.0/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/json-2.1.0/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/json-2.1.0/ext/json
+make "DESTDIR=" install

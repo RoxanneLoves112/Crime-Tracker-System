@@ -1,0 +1,68 @@
+<% unless @notes.empty? %>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Notes</span>
+      <table class="lined">
+        <thead>
+          <th></th>
+          <th>Officer</th>
+          <th class="align_center">Content</th>
+          <th>Date</th>
+          <% if can? :edit, InvestigationNote %>
+            <% if @investigation.officers.include?(current_user.officer) %>
+              <th class="align_center">Edit</th>
+            <% end %>
+          <% end %>
+        </thead>
+          <% for note in @notes %>
+            <tr>
+              <td>
+                <% if can? :destroy, note %>
+                  <% if note.officer == current_user.officer %>
+                    <%= link_to(investigation_note_path(note), method: :delete, class: 'remove') do %>
+                      x&nbsp;&nbsp;
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <% if can? :read, note.officer %>
+                  <%= link_to note.officer.name, officer_path(note.officer)%>
+                <% else %>
+                  <%= note.officer.name%>
+                <% end %>
+              </td>
+              <td><%= best_in_place note, :content, as: :input %></td>
+              <td><%= note.date%></td>
+              <td class="align_center">
+                <% if can? :edit, note %>
+                  <% if note.officer == current_user.officer %>
+                    <%= link_to edit_investigation_note_path(note) do %>
+                        <i class="material-icons">edit</i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+      </table> 
+      <% if can? :new, InvestigationNote %>
+        <% if current_user.role?(:officer) && @investigation.date_closed.nil? && @investigation.assignments.current.map{|a| a.officer}.include?(current_user.officer)%>
+          <div class="card-action">
+            <%= link_to "Add a new Note",new_investigation_note_path(investigation_id: @investigation.id)  %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else%>
+  <% if can? :new, InvestigationNote %>
+    <% if current_user.role?(:officer) && @investigation.date_closed.nil? && @investigation.assignments.current.map{|a| a.officer}.include?(current_user.officer)%>
+      <div class="card grey lighten-3">
+        <div class="card-action">
+          <%= link_to "Add a new Note",new_investigation_note_path(investigation_id: @investigation.id)  %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end%>

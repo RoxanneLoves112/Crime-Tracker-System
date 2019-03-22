@@ -1,0 +1,7 @@
+<%= f.input :first_name, label_html: { class: 'active' } %>
+<%= f.input :last_name, label_html: { class: 'active' } %>
+<%= f.input :rank, collection: %w[Officer Sergeant Detective Detective\ Sergeant Lieutenant Captain Commissioner], include_blank: true %>
+<%= f.input :unit_id, collection: Unit.alphabetical.to_a, include_blank: true %>
+<%= f.input :ssn, label_html: { class: 'active' } %>
+<%= f.input :active %>
+

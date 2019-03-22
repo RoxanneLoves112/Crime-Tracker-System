@@ -1,0 +1,15 @@
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/debug_inspector-0.0.3/ext/debug_inspector
+/Users/yutian/.rvm/rubies/ruby-2.4.1/bin/ruby -r ./siteconf20181113-7498-wfzuhf.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR=" clean
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.bundle
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 debug_inspector.bundle ./.gem.20181113-7498-l446x4

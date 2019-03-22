@@ -1,0 +1,3 @@
+<%= f.input :content, label_html: { class: 'active' }, include_blank:false %>
+<%= f.input :investigation_id, as: :hidden, input_html: { value: @investigation.id } %>
+<%= f.input :officer_id, as: :hidden, input_html: { value: current_user.officer.id } %>

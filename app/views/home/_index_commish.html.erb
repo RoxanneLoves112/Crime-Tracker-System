@@ -1,0 +1,65 @@
+<html>
+  <body>
+    <div class="row">  
+      <% if current_user.officer.nil? %>
+        <h4>Welcome Back, Commissioner <%= current_user.username %>!  </h4> 
+      <% else%>
+        <h4>Welcome Back, Commissioner <%= current_user.officer.proper_name %>!  </h4> 
+      <% end%>
+    </div>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Officers in GCPD</h5>
+          <br><br>
+          <%= pie_chart [["Active", Officer.active.count], ["Inactive", Officer.inactive.count]], colors: ["#1b67eb", "#666"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Units in GCPD</h5>
+          <br><br>
+          <%= pie_chart [["Active", Unit.active.count], ["Inactive", Unit.inactive.count]],  colors: ["#b00", "#666"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Crimes in GCPD</h5>
+          <br><br>
+          <%= pie_chart [["Active", Crime.active.count], ["Inactive", Crime.inactive.count]],  donut:true, colors: ["#00CC00", "#666"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Criminals in GCPD</h5>
+          <br><br>
+          <%= pie_chart [["Enhanced Powers", Criminal.enhanced.count], ["Ordinary", Criminal.count - Criminal.enhanced.count]],  donut:true, colors: ["#551A8B", "#666"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Investigations in GCPD</h5>
+          <br><br>
+          <%= column_chart [["Total", Investigation.count], ["Open", Investigation.is_open.count], ["Closed", Investigation.is_closed.count], ["Solved", Investigation.was_solved.count],["Unsolved", Investigation.unsolved.count], ["Batman Involved", Investigation.with_batman.count]]%>
+        </div>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Assignments in GCPD</h5>
+          <br><br>
+          <%= column_chart [["Current Assignments", Assignment.current.count], ["Past Assignments", Assignment.past.count]]%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

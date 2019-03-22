@@ -1,0 +1,19 @@
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/byebug-10.0.2/ext/byebug
+/Users/yutian/.rvm/rubies/ruby-2.4.1/bin/ruby -r ./siteconf20181113-7498-r1h6sl.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/byebug-10.0.2/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/byebug-10.0.2/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/byebug-10.0.2/ext/byebug
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 byebug.bundle ./.gem.20181113-7498-at75w6/byebug

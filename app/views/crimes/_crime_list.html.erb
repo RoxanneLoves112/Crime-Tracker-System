@@ -1,0 +1,46 @@
+<h4><%= state.capitalize %> Crimes in GCPD</h4>
+
+<% if crimes.empty? %>
+  <p>There are no <%= state.downcase %> crimes at this time.</p>
+<% else %>
+
+  <table class="striped highlight">
+    <thead>
+      <th>Crime</th>
+      <th>Level</th>
+      <th>Active</th>
+
+      <% if can? :edit, Crime %>
+        <th class="align_center">Edit</th>
+      <% end %>
+      
+    </thead>
+    <% for crime in crimes %>
+      <tr>
+        <% if can? :update, Crime %>
+          <td><%= best_in_place crime, :name, as: :input %><%# crime.name %></td>
+        <% else %>
+          <td><%= crime.name %></td>
+        <% end %>
+        <td><%= crime.felony ? "Felony" : "Misdemeanor" %></td>
+
+        <% if can? :update, crime %>
+          <td><div class="btn"><%= best_in_place crime, :active, as: :checkbox, collection: {false: "No", true: "Yes"} %></div>
+        <% else %>
+          <td><%= crime.active %></div>
+        <% end %>
+          <td class="align_center">
+            <% if can? :edit, Crime %>
+                <%= link_to edit_crime_path(crime) do %>
+                    <i class="material-icons">edit</i>
+                <% end %>
+            <% end %>
+          </td>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <p class="supertiny"></p>
+  <br />
+  <%= will_paginate crimes, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% end %>

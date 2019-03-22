@@ -1,0 +1,66 @@
+<html>
+  <body>
+    <div class="row">  
+      <% if current_user.officer.nil? %>
+        <h4>Welcome Back, Chief <%= current_user.username %>!  </h4> 
+      <% else%>
+        <h4>Welcome Back, Chief <%= current_user.officer.proper_name %>!  </h4> 
+      <% end%>
+    </div>
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <h5>Current Assignments of Active Officers in <%=current_user.officer.unit.name %></h5>
+          <br><br>
+          <%= column_chart current_user.officer.unit.officers.active.map { |o| [o.proper_name, o.assignments.current.count]}%>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>Officers in My Unit</h5>
+          <br><br>
+          <%= pie_chart [["Active in #{current_user.officer.unit.name}", current_user.officer.unit.officers.active.count], ["Inactive in #{current_user.officer.unit.name}", current_user.officer.unit.officers.inactive.count]], colors: ["#1b67eb", "#666"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Units in GCPD</h5>
+          <br><br>
+          <%= pie_chart [["Active", Unit.active.count], ["Inactive", Unit.inactive.count]], donut:true, colors: ["#b00", "#666"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Crimes in GCPD</h5>
+          <br><br>
+          <%= pie_chart [["Active", Crime.active.count], ["Inactive", Crime.inactive.count]],  donut:true, colors: ["#00CC00", "#666"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Criminals in GCPD</h5>
+          <br><br>
+          <%= pie_chart [["Enhanced Powers", Criminal.enhanced.count], ["Ordinary", Criminal.count - Criminal.enhanced.count]],  donut:true, colors: ["#551A8B", "#666"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <h5>All Investigations in GCPD</h5>
+          <br><br>
+          <%= column_chart [["Total", Investigation.count], ["Open", Investigation.is_open.count], ["Closed", Investigation.is_closed.count], ["Solved", Investigation.was_solved.count],["Unsolved", Investigation.unsolved.count], ["Batman Involved", Investigation.with_batman.count]]%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

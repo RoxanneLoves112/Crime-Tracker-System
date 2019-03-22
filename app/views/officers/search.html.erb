@@ -1,0 +1,16 @@
+<h5>Search result for term <em>'<%= @query %>'</em> resulted in <%= pluralize(@total_hits, 'hit') %></h5>
+<p class="supertiny">&nbsp;</p>
+
+<% unless @officers.empty? %>
+      <p><em><strong>Officers matching term '<%= @query %>'</strong></em></p>
+      <ul>
+        <% for officer in @officers do %>
+          <% if (current_user.role?(:commish)|| current_user.role?(:chief) || current_user.officer == officer) %>
+            <li><%= link_to officer.proper_name, officer_path(officer) %>: belongs to <%= link_to "#{officer.unit.name}", unit_path(officer.unit) %></li>
+          <% else %>
+            <li><%= officer.proper_name %>: belongs to <%= link_to "#{officer.unit.name}", unit_path(officer.unit) %></li>
+          <% end %>
+        <% end %>
+      </ul>
+      <p class="supertiny">&nbsp;</p>
+  <% end %>

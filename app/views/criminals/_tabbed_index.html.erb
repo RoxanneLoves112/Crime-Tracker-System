@@ -1,0 +1,17 @@
+<div id="tabbed">
+  <tabs>
+
+    <tab name="all criminals" v-bind:selected="true">
+      <%= render :partial => "criminal_list", locals: {criminals: @criminals} %>
+    </tab>
+
+    <tab name="enhanced criminals">
+      <%= render :partial => "enhanced_criminal_list", locals: {criminals: @enhanced_powers} %>
+    </tab>
+
+
+  </tabs>
+</div>
+
+<p>&nbsp;</p>
+<%= render :partial => "partials/add_new_object", locals: {model_name: 'criminal'} %>

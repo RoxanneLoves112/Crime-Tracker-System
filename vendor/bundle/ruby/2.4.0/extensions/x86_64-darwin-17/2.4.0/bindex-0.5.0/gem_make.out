@@ -1,0 +1,15 @@
+current directory: /Users/yutian/Desktop/phase5_f18-master/vendor/bundle/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+/Users/yutian/.rvm/rubies/ruby-2.4.3/bin/ruby -r ./siteconf20190321-63896-n7et6j.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yutian/Desktop/phase5_f18-master/vendor/bundle/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /Users/yutian/Desktop/phase5_f18-master/vendor/bundle/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.bundle
+
+current directory: /Users/yutian/Desktop/phase5_f18-master/vendor/bundle/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 cruby.bundle ./.gem.20190321-63896-1bd1c02/bindex

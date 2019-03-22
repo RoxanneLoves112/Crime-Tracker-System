@@ -1,0 +1,27 @@
+<% unless @with_batman.empty? %>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Recent Cases Involving Batman</span>
+      <table class="lined">
+        <thead>
+          <th>Case</th>
+          <th>Open?</th>
+        </thead>
+          <% for investigation in @with_batman %>
+            <tr>
+              <td>
+                <% if (current_user.role?(:commish)|| current_user.role?(:chief) || investigation.officers.include?(current_user.officer)) %>
+                  &nbsp;<%= link_to investigation.title, investigation_path(investigation) %>
+                <% else %>
+                  &nbsp;<%= investigation.title %>
+                <% end %>
+              </td>
+              <td><%= investigation.date_closed.nil? ? "Yes" : "No" %></td>
+              
+            </tr>
+          <% end %>
+      </table>
+    </div>
+  </div>
+<% end%>
+<br />

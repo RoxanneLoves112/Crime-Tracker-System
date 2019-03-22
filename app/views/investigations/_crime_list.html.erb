@@ -1,0 +1,47 @@
+<% unless @case_crimes.empty? %>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Crimes Involved</span>
+      <table class="lined">
+        <thead>
+          <th></th>
+          <th>Crime</th>
+          <th>Level</th>
+        </thead>
+          <% for crime_investigation in @crime_investigations %>
+            <tr>
+              <td>
+                <% if can? :remove, CrimeInvestigation %>
+                  <%= link_to(crime_investigation_path(crime_investigation), method: :delete, data: { confirm: 'Are you sure you wish to remove the crime for this investigation?'}) do %>
+                       x&nbsp;&nbsp;
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                &nbsp;<%= crime_investigation.crime.name %>
+              </td>
+              <td><%= crime_investigation.crime.felony ? "Felony" : "Misdemeanor" %></td>
+            </tr>
+          <% end %>
+      </table>
+      <% if can? :new, CrimeInvestigation %>
+        <% if @investigation.date_closed.nil? %>
+          <div class="card-action">
+            <%= link_to "Add a new crime", new_crime_investigation_path(investigation_id: @investigation.id) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else%>
+  <% if can? :new, CrimeInvestigation %>
+    <% if @investigation.date_closed.nil? %>
+      <div class="card grey lighten-3">
+        <div class="card-action">
+          <%= link_to "Add a new crime", new_crime_investigation_path(investigation_id: @investigation.id) %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+

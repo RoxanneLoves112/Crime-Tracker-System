@@ -1,0 +1,15 @@
+<% if current_user.nil? %>
+  <%= render :partial => "index_guest" %>
+
+<% elsif current_user.role?(:officer) %>
+  <%= render :partial => "index_officer" %>
+
+<% elsif current_user.role?(:commish) %>
+  <%= render :partial => "index_commish" %>
+
+<% elsif current_user.role?(:chief) %>
+  <%= render :partial => "index_chief" %>
+  
+<% else %>
+  <%= render :partial => "index_guest" %>
+<% end%>

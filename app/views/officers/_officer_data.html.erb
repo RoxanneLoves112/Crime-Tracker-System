@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-content">
+    <h5>Officer Information for <%=  best_in_place @officer, :first_name, as: :input %>
+                                <%=  best_in_place @officer, :last_name, as: :input %>
+    </h5><br />
+
+    <b>Current Unit:&nbsp;&nbsp;</b>
+      <%= link_to @officer.unit.name, unit_path(@officer.unit) %>
+      <% if @officer.user.role?(:chief) %>
+        &nbsp;&nbsp;<i>*Unit Chief</i>
+      <% end%>     
+      <br /><br />
+
+    <b>Current Rank:&nbsp;&nbsp;</b>
+      <%= @officer.rank %><br /><br />
+
+    <b>SSN:&nbsp;&nbsp;</b>
+      <%= best_in_place @officer, :ssn, as: :input %><br /><br />
+
+    <b>Username:&nbsp;&nbsp;</b>
+      <%= @officer.user.username %><br /><br />
+
+    <b>Active with GCPD?&nbsp;&nbsp;</b>
+      <div class="btn"><%= best_in_place @officer, :active, as: :checkbox, collection: {false: "No", true: "Yes"} %></div>
+      <br><br><br>
+  </div>
+</div>

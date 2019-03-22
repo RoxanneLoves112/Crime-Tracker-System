@@ -1,0 +1,7 @@
+<div class="col s12">
+	<%= form_with url: officer_search_path, class: "form-inline", id: "search" do %>
+        <%= text_field_tag 'query', '', placeholder: "Search ..." %>
+              <!-- submitting via js (press enter) so not using... -->
+              <%# submit_tag('Find') %>
+    <% end %>
+</div>

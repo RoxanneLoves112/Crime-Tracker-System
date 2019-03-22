@@ -1,0 +1,16 @@
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+/Users/yutian/.rvm/rubies/ruby-2.4.1/bin/ruby -r ./siteconf20181113-7498-6m87hl.rb extconf.rb
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+make "DESTDIR=" clean
+make: *** No rule to make target `clean'.  Stop.
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+make "DESTDIR="
+echo "Nada."
+Nada.
+
+current directory: /Users/yutian/Desktop/phase5/vendor/bundle/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+make "DESTDIR=" install
+echo "Nada."
+Nada.

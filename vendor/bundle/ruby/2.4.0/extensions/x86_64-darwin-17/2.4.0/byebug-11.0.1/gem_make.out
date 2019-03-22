@@ -1,0 +1,19 @@
+current directory: /Users/yutian/Desktop/phase5_f18-master/vendor/bundle/ruby/2.4.0/gems/byebug-11.0.1/ext/byebug
+/Users/yutian/.rvm/rubies/ruby-2.4.3/bin/ruby -r ./siteconf20190321-63896-13o6xvj.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yutian/Desktop/phase5_f18-master/vendor/bundle/ruby/2.4.0/gems/byebug-11.0.1/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/yutian/Desktop/phase5_f18-master/vendor/bundle/ruby/2.4.0/gems/byebug-11.0.1/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/yutian/Desktop/phase5_f18-master/vendor/bundle/ruby/2.4.0/gems/byebug-11.0.1/ext/byebug
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 byebug.bundle ./.gem.20190321-63896-fygbsm/byebug

@@ -1,0 +1,15 @@
+# Phase 5 Fall 2018
+before_script:
+# Print status
+  - echo -e "\e[33m+------------------------+\n|   SETTING UP PROJECT   |\n+------------------------+\e[0m"
+# Install gems the Docker image may not have
+  - bundle install --gemfile=Gemfile
+# Set up the test database
+  - rails db:test:prepare
+  - rails db:migrate:reset
+
+test:
+  script:
+# Run their unit tests
+    - echo -e "\e[33m+------------------------------+\n|   RUNNING THEIR UNIT TESTS   |\n+------------------------------+\e[0m"
+    - rails test test/models

@@ -1,0 +1,48 @@
+<h5>Search result for term <em>'<%= @query %>'</em> resulted in <%= pluralize(@total_hits, 'hit') %></h5>
+<p class="supertiny">&nbsp;</p>
+
+
+<% unless @investigations.empty? %>
+  <p><em><strong>Investigations matching term '<%= @query %>'</strong></em></p>
+  <ul>
+    <% for investigation in @investigations do %>
+      <% if (current_user.role?(:commish)|| current_user.role?(:chief) || investigation.officers.include?(current_user.officer)) %>
+        <li><%= link_to investigation.title, investigation_path(investigation) %></li>
+      <% else %>
+        <li><%= investigation.title %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <p class="smtext">&nbsp;</p>
+<% end %>
+
+
+<% unless @criminals.empty? %>
+  <p><em><strong>Criminals matching term '<%= @query %>'</strong></em></p>
+  <ul>
+    <% for criminal in @criminals do %>
+      <li><%= link_to criminal.proper_name, criminal_path(criminal) %></li>
+    <% end %>
+  </ul>
+  <p class="supertiny">&nbsp;</p>
+<% end %>
+
+
+<% if current_user.role?(:officer) %>
+  <p><em><strong>Officers matching term '<%= @query %>'</strong></em></p>
+  <p>Sorry, but you are not allowed to view the list of officers.</p>
+<% else %>
+  <% unless @officers.empty? %>
+      <p><em><strong>Officers matching term '<%= @query %>'</strong></em></p>
+      <ul>
+        <% for officer in @officers do %>
+          <% if (current_user.role?(:commish)|| current_user.role?(:chief) || current_user.officer == officer) %>
+            <li><%= link_to officer.proper_name, officer_path(officer) %>: belongs to <%= link_to "#{officer.unit.name}", unit_path(officer.unit) %></li>
+          <% else %>
+            <li><%= officer.proper_name %>: belongs to <%= link_to "#{officer.unit.name}", unit_path(officer.unit) %></li>
+          <% end %>
+        <% end %>
+      </ul>
+      <p class="supertiny">&nbsp;</p>
+  <% end %>
+<% end %>
